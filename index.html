@@ -209,12 +209,23 @@ color: '#2c3e50'
 
             for(var i = 0; i < circles.length; i ++){
                 circles[i].fillColor.hue += 1;
-                circles[i].scale(.9);
+                circles[i].scale(.95);
+                if(circles[i].area < 1){
+                  circles[i].remove(); // remove the circle from the canvas
+                  circles.splice(i, 1); // remove the circle from the array
+                  i--; // decrement i so that the loop doesn't skip a circle because of .splice()
+                  console.log(circles);
+                }
             }
             for(var i = 0; i < squares.length; i ++){
-               // squares[i].fillColor.hue -= 1;
                 squares[i].scale(.95);
                 squares[i].rotate(3);
+                if(squares[i].area < 1){
+                  squares[i].remove(); // remove the square from the canvas
+                  squares.splice(i, 1); // remove the square from the array
+                  i--; // decrement i so that the loop doesn't skip a square because of .splice()
+                  console.log(squares);
+                }
             }
     };
     </script>
